@@ -1,0 +1,10 @@
+language: csharp
+solution: ./src/SHNDecryptor.sln
+
+script:
+  - export MONO_IOMAP=all xbuild
+  - xbuild ./src/SHNDEcryptor.sln
+
+branches:
+  only:
+    - master

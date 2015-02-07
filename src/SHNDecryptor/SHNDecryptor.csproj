@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{696AC15A-CD7F-4D64-B52C-A81088617F12}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SHNDecrypt</RootNamespace>
+    <AssemblyName>SHNDecryptor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Properties\page-edit.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Help\helpAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\helpAbout.Designer.cs">
+      <DependentUpon>helpAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Columns\columnBulkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Columns\columnBulkEdit.Designer.cs">
+      <DependentUpon>columnBulkEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Columns\columnDivide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Columns\columnDivide.Designer.cs">
+      <DependentUpon>columnDivide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Columns\columnMultiply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Columns\columnMultiply.Designer.cs">
+      <DependentUpon>columnMultiply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\FileAssociation.cs" />
+    <Compile Include="Help\helpUpdates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\helpUpdates.Designer.cs">
+      <DependentUpon>helpUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Rows\rowReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rows\rowReplace.Designer.cs">
+      <DependentUpon>rowReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Columns\columnCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Columns\columnCreate.Designer.cs">
+      <DependentUpon>columnCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rows\rowCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rows\rowCreate.Designer.cs">
+      <DependentUpon>rowCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Search\searchGoTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Search\searchGoTo.Designer.cs">
+      <DependentUpon>searchGoTo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\toolCreateShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolCreateShop.Designer.cs">
+      <DependentUpon>toolCreateShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\toolDebugFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolDebugFrm.Designer.cs">
+      <DependentUpon>toolDebugFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Columns\columnDeletion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Columns\columnDeletion.Designer.cs">
+      <DependentUpon>columnDeletion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\toolExpEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolExpEditor.Designer.cs">
+      <DependentUpon>toolExpEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\toolEditHeaderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolEditHeaderInfo.Designer.cs">
+      <DependentUpon>toolEditHeaderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\toolItemEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolItemEditor.Designer.cs">
+      <DependentUpon>toolItemEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rows\rowFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rows\rowFilter.Designer.cs">
+      <DependentUpon>rowFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MRUManager.cs" />
+    <Compile Include="Tools\toolODT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolODT.Designer.cs">
+      <DependentUpon>toolODT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Help\helpAbout.resx">
+      <DependentUpon>helpAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Columns\columnBulkEdit.resx">
+      <DependentUpon>columnBulkEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Columns\columnDivide.resx">
+      <DependentUpon>columnDivide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Columns\columnMultiply.resx">
+      <DependentUpon>columnMultiply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\helpUpdates.resx">
+      <DependentUpon>helpUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rows\rowReplace.resx">
+      <DependentUpon>rowReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Columns\columnCreate.resx">
+      <DependentUpon>columnCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rows\rowCreate.resx">
+      <DependentUpon>rowCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search\searchGoTo.resx">
+      <DependentUpon>searchGoTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolCreateShop.resx">
+      <DependentUpon>toolCreateShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolDebugFrm.resx">
+      <DependentUpon>toolDebugFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Columns\columnDeletion.resx">
+      <DependentUpon>columnDeletion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolExpEditor.resx">
+      <DependentUpon>toolExpEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolEditHeaderInfo.resx">
+      <DependentUpon>toolEditHeaderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolItemEditor.resx">
+      <DependentUpon>toolItemEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rows\rowFilter.resx">
+      <DependentUpon>rowFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolODT.resx">
+      <DependentUpon>toolODT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Columns\columnRename.resx">
+      <DependentUpon>columnRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rows\rowTally.resx">
+      <DependentUpon>rowTally.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search\searchFind.resx">
+      <DependentUpon>searchFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search\searchReplace.resx">
+      <DependentUpon>searchReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolTransByList.resx">
+      <DependentUpon>toolTransByList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolTranslator.resx">
+      <DependentUpon>toolTranslator.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\app.manifest" />
+    <Compile Include="Columns\columnRename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Columns\columnRename.Designer.cs">
+      <DependentUpon>columnRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rows\rowTally.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rows\rowTally.Designer.cs">
+      <DependentUpon>rowTally.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Search\searchFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Search\searchFind.Designer.cs">
+      <DependentUpon>searchFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Search\searchReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Search\searchReplace.Designer.cs">
+      <DependentUpon>searchReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\SHNFile.cs" />
+    <Compile Include="Classes\SQLConv.cs" />
+    <Compile Include="Tools\toolTransByList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolTransByList.Designer.cs">
+      <DependentUpon>toolTransByList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\toolTranslator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolTranslator.Designer.cs">
+      <DependentUpon>toolTranslator.cs</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\page-edit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
