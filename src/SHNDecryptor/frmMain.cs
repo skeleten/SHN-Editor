@@ -34,17 +34,6 @@ namespace SHNDecrypt
             InitFile(filePath);
         }
 
-        void unCheckEncodeType()
-        {
-            uTF7ToolStripMenuItem.Checked = false;
-            uTF8ToolStripMenuItem.Checked = false;
-            gB2312ToolStripMenuItem.Checked = false;
-            iSO88591ToolStripMenuItem.Checked = false;
-            iSO88592ToolStripMenuItem.Checked = false;
-            iSO2022JPToolStripMenuItem.Checked = false;
-            bIG5ToolStripMenuItem.Checked = false;
-        }
-
         public TabControl FileTab { get { return FileTabs; } }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -58,16 +47,7 @@ namespace SHNDecrypt
                 if (result == DialogResult.Yes) CreateAssociation();
             }
 
-            unCheckEncodeType();
             setRegistryInfo();
-
-            if (Program.eT == "UTF7") { uTF7ToolStripMenuItem.Checked = true; }
-            else if (Program.eT == "UTF8") { uTF8ToolStripMenuItem.Checked = true; }
-            else if (Program.eT == "ISO-8859-1") { iSO88591ToolStripMenuItem.Checked = true; }
-            else if (Program.eT == "ISO-8859-2") { iSO88592ToolStripMenuItem.Checked = true; }
-            else if (Program.eT == "GB2312") { gB2312ToolStripMenuItem.Checked = true; }
-            else if (Program.eT == "ISO-2022-JP") { iSO2022JPToolStripMenuItem.Checked = true; }
-            else if (Program.eT == "BIG5") { bIG5ToolStripMenuItem.Checked = true; }
 
             this.mruManager = new MRUManager(recentToolStripMenuItem, Program.assemblyName, myOwnRecentFileGotClicked_handler);
             this.Text = "SHN Editor - V" + Application.ProductVersion;
@@ -847,111 +827,7 @@ namespace SHNDecrypt
             createRow creator = new createRow(this);
             creator.ShowDialog();
         }
-
-        private void uTF7ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.rK.SetValue("0", "UTF7");
-                unCheckEncodeType();
-                uTF7ToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to UTF7. SHN Editor will now read and write in UTF7");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-
-        private void uTF8ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.rK.SetValue("0", "UTF8");
-                unCheckEncodeType();
-                uTF8ToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to UTF8. SHN Editor will now read and write in UTF8");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-
-        private void iSO88591ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.rK.SetValue("0", "ISO-8859-1");
-                unCheckEncodeType();
-                iSO88591ToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to ISO-8859-1. SHN Editor will now read and write in ISO-8859-1");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-        private void iSO88592ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.rK.SetValue("0", "ISO-8859-2");
-                unCheckEncodeType();
-                iSO88592ToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to ISO-8859-2. SHN Editor will now read and write in ISO-8859-2");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-
-        private void gB2312ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {                
-                Program.rK.SetValue("0", "GB2312");
-                unCheckEncodeType();
-                gB2312ToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to GB2312. SHN Editor will now read and write in GB2312");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-
-        private void iSO2022KRToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.rK.SetValue("0", "ISO-2022-JP");
-                unCheckEncodeType();
-                iSO2022JPToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to ISO-2022-JP. SHN Editor will now read and write in ISO-2022-JP");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-
-        private void bIG5ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Program.rK.SetValue("0", "BIG5");
-                unCheckEncodeType();
-                bIG5ToolStripMenuItem.Checked = true;
-                MessageBox.Show("Encoding has been set to BIG5. SHN Editor will now read and write in BIG5");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while changing encoding: \r\n" + ex.Message);
-            }
-        }
-
+		
         private void FileTabs_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -993,5 +869,10 @@ namespace SHNDecrypt
                 Application.Exit();
             }
         }
-    }
+
+		private void encodingToolStripMenuItem_Click(object sender, EventArgs e) {
+		  Tools.toolSetEncoding setEncodingWindow = new Tools.toolSetEncoding();
+		  setEncodingWindow.ShowDialog();
+		}
+	}
 }
