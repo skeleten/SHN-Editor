@@ -482,45 +482,18 @@ namespace SHNDecrypt
 
         private void WriteString(BinaryWriter w, string s, int length)
         {
-            if (length == -1) //write unkLen
-            {
-                byte[] enctype0 = (isTextData) ? Encoding.ASCII.GetBytes(s) : Encoding.UTF7.GetBytes(s);
-                byte[] enctype1 = (isTextData) ? Encoding.ASCII.GetBytes(s) : Encoding.UTF8.GetBytes(s);
-                byte[] enctype2 = (isTextData) ? Encoding.GetEncoding("ISO-8859-2").GetBytes(s) : Encoding.GetEncoding("ISO-8859-2").GetBytes(s);
-                byte[] enctype3 = (isTextData) ? Encoding.GetEncoding("ISO-8859-1").GetBytes(s) : Encoding.GetEncoding("ISO-8859-1").GetBytes(s);
-                byte[] enctype4 = (isTextData) ? Encoding.GetEncoding("GB2312").GetBytes(s) : Encoding.GetEncoding("GB2312").GetBytes(s);
-                byte[] enctype5 = (isTextData) ? Encoding.GetEncoding("ISO-2022-JP").GetBytes(s) : Encoding.GetEncoding("ISO-2022-JP").GetBytes(s);
-                byte[] enctype6 = (isTextData) ? Encoding.GetEncoding("BIG5").GetBytes(s) : Encoding.GetEncoding("BIG5").GetBytes(s);
+					  Encoding enc = Encoding.GetEncoding(Program.eT);
+					  byte[] bytes = enc.GetBytes(s);
 
-                if (Program.eT == "UTF7") { w.Write(enctype0); }
-                else if (Program.eT == "UTF8") { w.Write(enctype1); }
-                else if (Program.eT == "ISO-8859-2") { w.Write(enctype2); }
-                else if (Program.eT == "GB2312") { w.Write(enctype4); }
-                else if (Program.eT == "ISO-2022-JP") { w.Write(enctype5); }
-                else if (Program.eT == "BIG5") { w.Write(enctype6); }
-                else { w.Write(enctype3); } 
-                
+						if (length == -1) //write unkLen
+            {
+								w.Write(bytes);
                 w.Write((byte)0); //end of string 
                 return;
             }
 
-            byte[] bytes0 = (isTextData) ? Encoding.ASCII.GetBytes(s) : Encoding.UTF7.GetBytes(s);
-            byte[] bytes1 = (isTextData) ? Encoding.ASCII.GetBytes(s) : Encoding.UTF8.GetBytes(s);
-            byte[] bytes2 = (isTextData) ? Encoding.GetEncoding("ISO-8859-2").GetBytes(s) : Encoding.GetEncoding("ISO-8859-2").GetBytes(s);
-            byte[] bytes3 = (isTextData) ? Encoding.GetEncoding("ISO-8859-1").GetBytes(s) : Encoding.GetEncoding("ISO-8859-1").GetBytes(s);
-            byte[] bytes4 = (isTextData) ? Encoding.GetEncoding("GB2312").GetBytes(s) : Encoding.GetEncoding("GB2312").GetBytes(s);
-            byte[] bytes5 = (isTextData) ? Encoding.GetEncoding("ISO-2022-JP").GetBytes(s) : Encoding.GetEncoding("ISO-2022-JP").GetBytes(s);
-            byte[] bytes6 = (isTextData) ? Encoding.GetEncoding("BIG5").GetBytes(s) : Encoding.GetEncoding("BIG5").GetBytes(s);
-
             byte[] destinationArray = new byte[length];
-
-            if (Program.eT == "UTF7") { Array.Copy(bytes0, destinationArray, Math.Min(length, bytes0.Length)); }
-            else if (Program.eT == "UTF8") { Array.Copy(bytes1, destinationArray, Math.Min(length, bytes1.Length)); }
-            else if (Program.eT == "ISO-8859-2") { Array.Copy(bytes2, destinationArray, Math.Min(length, bytes2.Length)); }
-            else if (Program.eT == "GB2312") { Array.Copy(bytes4, destinationArray, Math.Min(length, bytes4.Length)); }
-            else if (Program.eT == "ISO-2022-JP") { Array.Copy(bytes5, destinationArray, Math.Min(length, bytes5.Length)); }
-            else if (Program.eT == "BIG5") { Array.Copy(bytes6, destinationArray, Math.Min(length, bytes6.Length)); }
-            else { Array.Copy(bytes3, destinationArray, Math.Min(length, bytes3.Length)); }
+						Array.Copy(bytes, destinationArray, Math.Min(length, bytes.Length));
             w.Write(destinationArray);
         }
 
@@ -715,10 +688,10 @@ namespace SHNDecrypt
             if (bytes > 0x100) { str = ReadString((uint)(bytes - 0x100)); }
 
             this.Read(Buffer, 0, (int)bytes);
+						Encoding enc = Encoding.GetEncoding(Program.eT);
+						string data = enc.GetString(Buffer, 0, (int) bytes);
 
-            if (Program.eT == "UTF7") { return (str + Encoding.UTF7.GetString(Buffer, 0, (int)bytes)); }
-            else if (Program.eT == "UTF8") { return (str + Encoding.UTF8.GetString(Buffer, 0, (int)bytes)); }
-            else { return (str + Encoding.GetEncoding(Program.eT).GetString(Buffer, 0, (int)bytes)); }
+						return str + data;
         }
 
         public override String ReadString()
@@ -731,25 +704,9 @@ namespace SHNDecrypt
                     break;
             }
 
-            string str0 = Encoding.UTF7.GetString(Buffer, 0, count);
-            string str1 = Encoding.UTF8.GetString(Buffer, 0, count);
-            string str2 = Encoding.GetEncoding(Program.eT).GetString(Buffer, 0, count);
-
-            if (Program.eT == "UTF7")
-            {
-                if (count == 0x100) { str0 = str0 + ReadString(); }
-                return str0;
-            }
-            else if (Program.eT == "UTF8")
-            {
-                if (count == 0x100) { str1 = str1 + ReadString(); }
-                return str1;
-            }            
-            else
-            {
-                if (count == 0x100) { str2 = str2 + ReadString(); }
-                return str2;
-            }
+            string str = Encoding.GetEncoding(Program.eT).GetString(Buffer, 0, count);
+            if (count == 0x100) { str = str + ReadString(); }
+            return str;
         }
 
         public String ReadString(int bytes)

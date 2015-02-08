@@ -290,6 +290,9 @@
     <EmbeddedResource Include="Search\searchReplace.resx">
       <DependentUpon>searchReplace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tools\toolSetEncoding.resx">
+      <DependentUpon>toolSetEncoding.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tools\toolTransByList.resx">
       <DependentUpon>toolTransByList.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,6 +331,12 @@
     </Compile>
     <Compile Include="Classes\SHNFile.cs" />
     <Compile Include="Classes\SQLConv.cs" />
+    <Compile Include="Tools\toolSetEncoding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\toolSetEncoding.Designer.cs">
+      <DependentUpon>toolSetEncoding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\toolTransByList.cs">
       <SubType>Form</SubType>
     </Compile>
