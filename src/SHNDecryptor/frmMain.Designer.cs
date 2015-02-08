@@ -719,6 +719,7 @@
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "File Tree";
+			this.groupBox1.Visible = false;
 			// 
 			// treeView1
 			// 
