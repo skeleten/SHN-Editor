@@ -482,7 +482,7 @@ namespace SHNDecrypt
 
         private void WriteString(BinaryWriter w, string s, int length)
         {
-					  Encoding enc = Encoding.GetEncoding(Program.eT);
+					  Encoding enc = Encoding.GetEncoding(Program.CurrentEncodingName);
 					  byte[] bytes = enc.GetBytes(s);
 
 						if (length == -1) //write unkLen
@@ -688,7 +688,7 @@ namespace SHNDecrypt
             if (bytes > 0x100) { str = ReadString((uint)(bytes - 0x100)); }
 
             this.Read(Buffer, 0, (int)bytes);
-						Encoding enc = Encoding.GetEncoding(Program.eT);
+						Encoding enc = Encoding.GetEncoding(Program.CurrentEncodingName);
 						string data = enc.GetString(Buffer, 0, (int) bytes);
 
 						return str + data;
@@ -704,7 +704,7 @@ namespace SHNDecrypt
                     break;
             }
 
-            string str = Encoding.GetEncoding(Program.eT).GetString(Buffer, 0, count);
+            string str = Encoding.GetEncoding(Program.CurrentEncodingName).GetString(Buffer, 0, count);
             if (count == 0x100) { str = str + ReadString(); }
             return str;
         }

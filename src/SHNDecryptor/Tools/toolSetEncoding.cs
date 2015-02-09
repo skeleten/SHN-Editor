@@ -19,7 +19,7 @@ namespace SHNDecrypt.Tools {
 	    SelectCurrentEncoding();
 	  }
 	  protected void SelectCurrentEncoding() {
-	    string encoding = Program.eT;
+	    string encoding = Program.CurrentEncodingName;
 			if(lstEncoding.Items.Contains(encoding))
 				lstEncoding.SelectedItems.Add(encoding);
 	  }
@@ -32,8 +32,8 @@ namespace SHNDecrypt.Tools {
 				if (string.IsNullOrEmpty(selectedEncoding)) {
 					// TODO: MessageBox
 				}
-		    Program.rK.SetValue("0", selectedEncoding);
-		    Program.eT = selectedEncoding;
+		    Program.EncodingRegisteryKey.SetValue("0", selectedEncoding);
+		    Program.CurrentEncodingName = selectedEncoding;
 
 		    Close();
 		  }
