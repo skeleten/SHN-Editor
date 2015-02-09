@@ -46,5 +46,13 @@ namespace SHNDecrypt.Tools {
 		private void btnSearch_Click(object sender, EventArgs e) {
 		  PopulateEncodingList(tbSearchText.Text);
 		}
-	}
+
+        private void tbSearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PopulateEncodingList(tbSearchText.Text);
+            }
+        }
+    }
 }
