@@ -182,7 +182,14 @@
             "",
             "Update 4.6.01.01:",
             "- Added ISO-2022-JP encoding type.",
-            "- Added BIG5 encoding type."});
+            "- Added BIG5 encoding type.",
+            "",
+            "Update 4.7.03.03:",
+            "- Added Encoding Changer allowing you to select any available encoding.",
+            "- Added check for exiting when using escape button.",
+            "- Started implementing file tree functionality.",
+            "- Changed Shop creator layout.",
+            "- Cleaned up code."});
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(353, 394);

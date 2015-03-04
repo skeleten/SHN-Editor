@@ -13,7 +13,6 @@ namespace SHNDecrypt
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        
         static void Main()
         {
             Application.EnableVisualStyles();
@@ -21,9 +20,12 @@ namespace SHNDecrypt
             Application.Run(new frmMain());
         }
 
-        public static String assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-        public static RegistryKey rK = Registry.CurrentUser.CreateSubKey("Software\\" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "\\Encoding", RegistryKeyPermissionCheck.ReadWriteSubTree);
-        public static String eT;
+        public static String assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+        public static RegistryKey EncodingRegisteryKey = Registry.CurrentUser.CreateSubKey(
+                string.Format(@"Software\{0}\Encoding", Assembly.GetExecutingAssembly().GetName().Name), 
+                RegistryKeyPermissionCheck.ReadWriteSubTree);
+
+        public static String CurrentEncodingName;
         
         public static String searchParam0;
         public static int searchParam1;

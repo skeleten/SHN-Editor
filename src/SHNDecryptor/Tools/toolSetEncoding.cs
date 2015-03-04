@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -19,7 +22,7 @@ namespace SHNDecrypt.Tools {
 	    SelectCurrentEncoding();
 	  }
 	  protected void SelectCurrentEncoding() {
-	    string encoding = Program.eT;
+	    string encoding = Program.CurrentEncodingName;
 			if(lstEncoding.Items.Contains(encoding))
 				lstEncoding.SelectedItems.Add(encoding);
 	  }
@@ -32,27 +35,52 @@ namespace SHNDecrypt.Tools {
 				if (string.IsNullOrEmpty(selectedEncoding)) {
 					// TODO: MessageBox
 				}
-		    Program.rK.SetValue("0", selectedEncoding);
-		    Program.eT = selectedEncoding;
+		    Program.EncodingRegisteryKey.SetValue("0", selectedEncoding);
+		    Program.CurrentEncodingName = selectedEncoding;
 
 		    Close();
 		  }
-		}
+      }
 
-		private void btnCancel_Click(object sender, EventArgs e) {
-		  Close();
-		}
-
-		private void btnSearch_Click(object sender, EventArgs e) {
-		  PopulateEncodingList(tbSearchText.Text);
-		}
-
-        private void tbSearchText_KeyDown(object sender, KeyEventArgs e)
+        private void btnChange_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                PopulateEncodingList(tbSearchText.Text);
+                if (lstEncoding.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select an encoding type before continuing.");
+                }
+                else
+                {
+                    string selectedEncoding = lstEncoding.SelectedItem as string;
+                    if (string.IsNullOrEmpty(selectedEncoding))
+                    {
+                        MessageBox.Show("Please select an encoding type before continuing.");
+                    }
+                    Program.EncodingRegisteryKey.SetValue("0", selectedEncoding);
+                    Program.CurrentEncodingName = selectedEncoding;
+                    lstEncoding.SelectedItem = selectedEncoding;
+                    MessageBox.Show(String.Format("Encoding has been set to {0}. SHN Editor will now read and write in {0}.", selectedEncoding));
+                    //Close();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured trying to change the encoding. " + ex.Message); ;
+            }
+        }
+
+        private void tbSearchText_TextChanged(object sender, EventArgs e)
+        {
+            PopulateEncodingList(tbSearchText.Text);
+        }
+
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            Program.EncodingRegisteryKey.SetValue("0", "iso-8859-1");
+            Program.CurrentEncodingName = "iso-8859-1";
+            lstEncoding.SelectedItem = "iso-8859-1";
+            MessageBox.Show("Encoding has been set to iso-8859-1. SHN Editor will now read and write in iso-8859-1.");
         }
     }
 }

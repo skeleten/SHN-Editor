@@ -51,7 +51,8 @@ namespace SHNDecrypt
 
             this.mruManager = new MRUManager(recentToolStripMenuItem, Program.assemblyName, myOwnRecentFileGotClicked_handler);
             this.Text = "SHN Editor - V" + Application.ProductVersion;
-            showHideMySQLToolStripMenuItem_Click_1(null, null);
+            showHideMySQLToolStripMenuItem_Click(null, null);
+            fileTreeToolStripMenuItem_Click(null, null);
             checkForParams();
         }
 
@@ -59,12 +60,12 @@ namespace SHNDecrypt
         {
             try
             {
-                Program.eT = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
+                Program.CurrentEncodingName = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
             }
             catch (NullReferenceException)
             {
-                Program.rK.SetValue("0", "ISO-8859-1");
-                Program.eT = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
+                Program.EncodingRegisteryKey.SetValue("0", "ISO-8859-1");
+                Program.CurrentEncodingName = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
             }
             catch (Exception ex) 
             { 
@@ -148,7 +149,6 @@ namespace SHNDecrypt
 
                 page.Controls.Add(grid);
                 page.ToolTipText = Filename;
-                if (!groupMysql.Visible) BigTabs(page); 
                 this.Text = "SHN Editor - " + FileTabs.TabCount.ToString() + " file(s) open";
                 stopwatch.Stop();
                 SQLStatus.Text = "Loaded " + file.table.Columns.Count + " column(s) and " + (file.table.Rows.Count).ToString() + " row(s) in " + stopwatch.ElapsedMilliseconds + " milliseconds.";
@@ -447,18 +447,6 @@ namespace SHNDecrypt
             Application.Exit();
         }
 
-        public void BigTabs(TabPage page)
-        {
-            page.Width += 290;
-            ((DataGridView)page.Tag).Width += 290;
-        }
-
-        public void SmallTabs(TabPage page)
-        {
-            page.Width -= 290;
-            ((DataGridView)page.Tag).Width -= 290;
-        }
-
         private void dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -678,25 +666,27 @@ namespace SHNDecrypt
             }
         }
 
-        private void showHideMySQLToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void showHideMySQLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (groupMysql.Visible)
             {
                 groupMysql.Visible = false;
-                FileTabs.Width += 290;
-                foreach (TabPage page in FileTabs.TabPages)
-                {
-                    BigTabs(page);
-                }
             }
             else
             {
                 groupMysql.Visible = true;
-                foreach (TabPage page in FileTabs.TabPages)
-                {
-                    SmallTabs(page);
-                }
-                FileTabs.Width -= 290;
+            }
+        }
+
+        private void fileTreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (groupTree.Visible)
+            {
+                groupTree.Visible = false;
+            }
+            else
+            {
+                groupTree.Visible = true;
             }
         }
 
@@ -827,7 +817,7 @@ namespace SHNDecrypt
             createRow creator = new createRow(this);
             creator.ShowDialog();
         }
-		
+
         private void FileTabs_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -865,14 +855,19 @@ namespace SHNDecrypt
         {
             if (e.KeyCode == Keys.Escape)
             {
-                e.SuppressKeyPress = true;
-                Application.Exit();
+                DialogResult result = MessageBox.Show("Are you sure you want to exit SHN editor?", "SHN Editor", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    e.SuppressKeyPress = true;
+                    Application.Exit();
+                }
             }
         }
 
-		private void encodingToolStripMenuItem_Click(object sender, EventArgs e) {
-		  Tools.toolSetEncoding setEncodingWindow = new Tools.toolSetEncoding();
-		  setEncodingWindow.ShowDialog();
-		}
-	}
+        private void encodingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tools.toolSetEncoding enc = new Tools.toolSetEncoding();
+            enc.ShowDialog();
+        }
+    }
 }
