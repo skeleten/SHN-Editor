@@ -482,18 +482,18 @@ namespace SHNDecrypt
 
         private void WriteString(BinaryWriter w, string s, int length)
         {
-					  Encoding enc = Encoding.GetEncoding(Program.eT);
-					  byte[] bytes = enc.GetBytes(s);
+            Encoding enc = Encoding.GetEncoding(Program.eT);
+            byte[] bytes = enc.GetBytes(s);
 
-						if (length == -1) //write unkLen
+            if (length == -1) //write unkLen
             {
-								w.Write(bytes);
+                w.Write(bytes);
                 w.Write((byte)0); //end of string 
                 return;
             }
 
             byte[] destinationArray = new byte[length];
-						Array.Copy(bytes, destinationArray, Math.Min(length, bytes.Length));
+            Array.Copy(bytes, destinationArray, Math.Min(length, bytes.Length));
             w.Write(destinationArray);
         }
 
@@ -688,10 +688,10 @@ namespace SHNDecrypt
             if (bytes > 0x100) { str = ReadString((uint)(bytes - 0x100)); }
 
             this.Read(Buffer, 0, (int)bytes);
-						Encoding enc = Encoding.GetEncoding(Program.eT);
-						string data = enc.GetString(Buffer, 0, (int) bytes);
 
-						return str + data;
+            Encoding enc = Encoding.GetEncoding(Program.eT);
+            string data = enc.GetString(Buffer, 0, (int) bytes);
+            return str + data;
         }
 
         public override String ReadString()
@@ -703,7 +703,6 @@ namespace SHNDecrypt
                 if (count >= 0x100)
                     break;
             }
-
             string str = Encoding.GetEncoding(Program.eT).GetString(Buffer, 0, count);
             if (count == 0x100) { str = str + ReadString(); }
             return str;
