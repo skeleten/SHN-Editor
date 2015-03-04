@@ -42,23 +42,6 @@ namespace SHNDecrypt.Tools {
 		  }
       }
 
-        protected virtual void PopulateEncodingList(string filter = "")
-        {
-            lstEncoding.Items.Clear();
-            foreach (EncodingInfo e in Encoding.GetEncodings().Where(e => e.Name.ToUpper().Contains(filter.ToUpper())))
-            {
-                lstEncoding.Items.Add(e.Name);
-            }
-            SelectCurrentEncoding();
-        }
-
-        protected void SelectCurrentEncoding()
-        {
-            string encoding = Program.eT;
-            if (lstEncoding.Items.Contains(encoding))
-                lstEncoding.SelectedItems.Add(encoding);
-        }
-
         private void btnChange_Click(object sender, EventArgs e)
         {
             try
@@ -74,8 +57,8 @@ namespace SHNDecrypt.Tools {
                     {
                         MessageBox.Show("Please select an encoding type before continuing.");
                     }
-                    Program.rK.SetValue("0", selectedEncoding);
-                    Program.eT = selectedEncoding;
+                    Program.EncodingRegisteryKey.SetValue("0", selectedEncoding);
+                    Program.CurrentEncodingName = selectedEncoding;
                     lstEncoding.SelectedItem = selectedEncoding;
                     MessageBox.Show(String.Format("Encoding has been set to {0}. SHN Editor will now read and write in {0}.", selectedEncoding));
                     //Close();
@@ -94,8 +77,8 @@ namespace SHNDecrypt.Tools {
 
         private void btnDefault_Click(object sender, EventArgs e)
         {
-            Program.rK.SetValue("0", "iso-8859-1");
-            Program.eT = "iso-8859-1";
+            Program.EncodingRegisteryKey.SetValue("0", "iso-8859-1");
+            Program.CurrentEncodingName = "iso-8859-1";
             lstEncoding.SelectedItem = "iso-8859-1";
             MessageBox.Show("Encoding has been set to iso-8859-1. SHN Editor will now read and write in iso-8859-1.");
         }

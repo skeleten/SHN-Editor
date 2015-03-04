@@ -866,7 +866,7 @@ namespace SHNDecrypt
 
         private void encodingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Tools.toolSetEncoding enc = new Tools.toolSetEncoding(this);
+            Tools.toolSetEncoding enc = new Tools.toolSetEncoding();
             enc.ShowDialog();
         }
     }
