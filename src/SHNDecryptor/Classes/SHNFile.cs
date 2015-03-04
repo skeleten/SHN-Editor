@@ -485,10 +485,11 @@ namespace SHNDecrypt
             Encoding enc = Encoding.GetEncoding(Program.eT);
             byte[] bytes = enc.GetBytes(s);
 
+
             if (length == -1) //write unkLen
             {
                 w.Write(bytes);
-                w.Write((byte)0); //end of string 
+                w.Write((byte)0); //end of string
                 return;
             }
 
@@ -680,7 +681,7 @@ namespace SHNDecrypt
 
         // Methods
         public BinaryReaderEx(Stream input) : base(input) { }
-        
+
         private String _ReadString(uint bytes)
         {
             string str = string.Empty;

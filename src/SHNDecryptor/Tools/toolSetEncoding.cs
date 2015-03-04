@@ -7,17 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SHNDecrypt.Tools
-{
-    public partial class toolSetEncoding : Form
-    {
-        frmMain enc;
-        public toolSetEncoding(frmMain main)
-        {
-            this.enc = main;
-            InitializeComponent();
-            PopulateEncodingList();
-        }
+namespace SHNDecrypt.Tools {
+	public partial class toolSetEncoding : Form {
+		public toolSetEncoding() {
+			InitializeComponent();
+		  PopulateEncodingList();
+		}
+
+	  protected virtual void PopulateEncodingList(string filter = "") {
+	    lstEncoding.Items.Clear();
+	    foreach (EncodingInfo e in Encoding.GetEncodings().Where(e => e.Name.ToUpper().Contains(filter.ToUpper()))) {
+	      lstEncoding.Items.Add(e.Name);
+	    }
+	    SelectCurrentEncoding();
+	  }
+	  protected void SelectCurrentEncoding() {
+	    string encoding = Program.CurrentEncodingName;
+			if(lstEncoding.Items.Contains(encoding))
+				lstEncoding.SelectedItems.Add(encoding);
+	  }
+
+		private void btnOk_Click(object sender, EventArgs e) {
+		  if (lstEncoding.SelectedItem == null) {
+		    // TODO: MessageBox
+		  } else {
+		    string selectedEncoding = lstEncoding.SelectedItem as string;
+				if (string.IsNullOrEmpty(selectedEncoding)) {
+					// TODO: MessageBox
+				}
+		    Program.EncodingRegisteryKey.SetValue("0", selectedEncoding);
+		    Program.CurrentEncodingName = selectedEncoding;
+
+		    Close();
+		  }
+      }
 
         protected virtual void PopulateEncodingList(string filter = "")
         {

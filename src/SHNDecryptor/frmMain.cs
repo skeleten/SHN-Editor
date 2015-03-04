@@ -60,12 +60,12 @@ namespace SHNDecrypt
         {
             try
             {
-                Program.eT = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
+                Program.CurrentEncodingName = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
             }
             catch (NullReferenceException)
             {
-                Program.rK.SetValue("0", "ISO-8859-1");
-                Program.eT = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
+                Program.EncodingRegisteryKey.SetValue("0", "ISO-8859-1");
+                Program.CurrentEncodingName = Registry.CurrentUser.OpenSubKey("Software\\" + Program.assemblyName + "\\Encoding").GetValue("0").ToString();
             }
             catch (Exception ex) 
             { 
