@@ -133,6 +133,31 @@
     <Compile Include="Help\helpUpdates.Designer.cs">
       <DependentUpon>helpUpdates.cs</DependentUpon>
     </Compile>
+    <Compile Include="More Tools\helper.cs" />
+    <Compile Include="More Tools\merchShopCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="More Tools\merchShopCheck.Designer.cs">
+      <DependentUpon>merchShopCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="More Tools\MoreTools_about.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="More Tools\MoreTools_about.Designer.cs">
+      <DependentUpon>MoreTools_about.cs</DependentUpon>
+    </Compile>
+    <Compile Include="More Tools\MoreTools_ExpMod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="More Tools\MoreTools_ExpMod.Designer.cs">
+      <DependentUpon>MoreTools_ExpMod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="More Tools\MoreTools_help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="More Tools\MoreTools_help.Designer.cs">
+      <DependentUpon>MoreTools_help.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -233,6 +258,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Help\helpUpdates.resx">
       <DependentUpon>helpUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="More Tools\merchShopCheck.resx">
+      <DependentUpon>merchShopCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="More Tools\MoreTools_about.resx">
+      <DependentUpon>MoreTools_about.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="More Tools\MoreTools_ExpMod.resx">
+      <DependentUpon>MoreTools_ExpMod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="More Tools\MoreTools_help.resx">
+      <DependentUpon>MoreTools_help.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rows\rowReplace.resx">
       <DependentUpon>rowReplace.cs</DependentUpon>

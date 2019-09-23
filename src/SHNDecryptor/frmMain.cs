@@ -869,5 +869,59 @@ namespace SHNDecrypt
             Tools.toolSetEncoding enc = new Tools.toolSetEncoding();
             enc.ShowDialog();
         }
+
+        /**
+         * 
+         * new stuff below
+         * 
+         **/
+        public bool[] loadedMonLvls = new bool[1];
+        public UInt32[] monLvls;// = new UInt32[65536];
+        private void advExpModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // set all rows' exp where row's id = specified lvl to a value determined by optype and opvalue
+            // e.g. a level-specific exp editor
+            if (this.file == null || this.dataGrid == null || (this.FileTab.SelectedTab.Text != "MobInfo.shn" && this.FileTab.SelectedTab.Text != "MobInfoServer.shn"))
+            {
+                MessageBox.Show("Detected that neither MobInfo.shn nor MobInfoServer.shn is open; please open one and select it as the current tab.");
+                return;
+            }
+            else
+            {
+                if (this.FileTab.SelectedTab.Text == "MobInfo.shn")
+                {
+                    if (monLvls == null)
+                    {
+                        monLvls = new UInt32[65536];
+                    }
+                    More_Tools.MoreTools_ExpMod mtExpMod = new More_Tools.MoreTools_ExpMod(loadedMonLvls, monLvls, dataGrid.Rows, "MobInfo.shn");
+                    mtExpMod.ShowDialog();
+                }
+                else if (this.FileTab.SelectedTab.Text == "MobInfoServer.shn")
+                {
+                    More_Tools.MoreTools_ExpMod mtExpMod = new More_Tools.MoreTools_ExpMod(loadedMonLvls, monLvls, dataGrid.Rows, "MobInfoServer.shn");
+                    mtExpMod.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Thought the file was ok, but I guess it wasn't. Confusing.");
+                }
+            }
+        }
+
+        private void shopItemValidatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String tmp = "";
+            DataGridViewRowCollection passRow;
+            if (this.file != null && this.dataGrid != null)
+            {
+                tmp = this.FileTab.SelectedTab.Text;
+                passRow = this.dataGrid.Rows;
+            }else{
+                 passRow = new DataGridViewRowCollection(new DataGridView());
+            }
+            More_Tools.merchShopCheck msc = new More_Tools.merchShopCheck(passRow, tmp);
+            msc.ShowDialog();
+        }
     }
 }
